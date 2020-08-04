@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div id="time"></div>
+<title>WS</title>
+<script>
+    let socket = new WebSocket("ws://127.0.0.1:8080/ws");
+
+    // message received - show the message in div#messages
+    socket.onmessage = function (event) {
+        let message = event.data;
+
+        let messageElem = document.createElement('div');
+        messageElem.textContent = message;
+        document.getElementById('time').prepend(messageElem);
+    }
+</script>
+</body>
+</html>
