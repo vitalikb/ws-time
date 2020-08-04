@@ -5,10 +5,12 @@
 
 </head>
 <body>
+<div id="ws-url"></div>
 <div id="time"></div>
 <title>WS</title>
 <script>
-    let socket = new WebSocket("ws://127.0.0.1:8080/ws");
+    const wsUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws"
+    let socket = new WebSocket(wsUrl);
 
     // message received - show the message in div#messages
     socket.onmessage = function (event) {
@@ -18,6 +20,7 @@
         messageElem.textContent = message;
         document.getElementById('time').prepend(messageElem);
     }
+    document.getElementById('ws-url').innerText = wsUrl;
 </script>
 </body>
 </html>
